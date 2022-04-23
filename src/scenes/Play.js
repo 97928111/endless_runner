@@ -88,7 +88,7 @@ class Play extends Phaser.Scene
         }
         this.player.x = gameOptions.playerStartPosition;
  
-        // recycling platforms
+        // recycling platformss
         let minDistance = game.config.width;
         this.platformGroup.getChildren().forEach(function(platform){
             let platformDistance = game.config.width - platform.x - platform.displayWidth / 2;
