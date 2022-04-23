@@ -82,7 +82,7 @@ class Play extends Phaser.Scene
 
     update()
     {
-        // game over1
+        // game over12
         if(this.player.y > game.config.height){
             this.scene.start("playScene");
         }
