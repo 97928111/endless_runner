@@ -16,9 +16,9 @@ window.onload = function() {
     // object containing configuration options
     let gameConfig = {
         type: Phaser.AUTO,
-        width: 1334,
-        height: 750,
-        scene: [Play],
+        width: 1280,
+        height: 960,
+        scene: [MainMenu, Play, GameMenu],
         backgroundColor: 0x444444,
  
         // physics settings

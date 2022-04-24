@@ -1,19 +1,16 @@
-class Play extends Phaser.Scene
-{
-    constructor()
-    {
+class Play extends Phaser.Scene {
+    constructor() {
         super("playScene");
     }
 
-    preload()
-    {
+    preload() {
         this.load.image("platform", './assets/platform.png');
         this.load.image("ball", './assets/ball.png');
         
     }
 
-    create()
-    {
+    create() {
+
         this.platformGroup = this.add.group({
  
             // once a platform is removed, it's added to the pool
@@ -49,7 +46,7 @@ class Play extends Phaser.Scene
     }
  
     // the core of the script: platform are added from the pool or created on the fly
-    addPlatform(platformWidth, posX){
+    addPlatform(platformWidth, posX) {
         let platform;
         if(this.platformPool.getLength()){
             platform = this.platformPool.getFirst();
@@ -68,8 +65,7 @@ class Play extends Phaser.Scene
         this.nextPlatformDistance = Phaser.Math.Between(gameOptions.spawnRange[0], gameOptions.spawnRange[1]);
     }
 
-    jump()
-    {
+    jump() {
         if(this.player.body.touching.down || (this.playerJumps > 0 && this.playerJumps < gameOptions.jumps))
         {
             if(this.player.body.touching.down){
@@ -80,11 +76,10 @@ class Play extends Phaser.Scene
         }
     }
 
-    update()
-    {
+    update() {
         // game over12
         if(this.player.y > game.config.height){
-            this.scene.start("playScene");
+            this.scene.start("endScene");
         }
         this.player.x = gameOptions.playerStartPosition;
  

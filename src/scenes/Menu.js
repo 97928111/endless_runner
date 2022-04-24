@@ -1,25 +1,18 @@
-/*class Menu extends Phaser.Scene
-{
-    constructor()
-    {
-        super("menuScene");
+class MainMenu extends Phaser.Scene {
+    constructor() {
+        super("mainScene");
     }
     
-    preload()
-    {
+    preload() {
         this.load.audio('sfx_select', './assets/blip_select12.wav');
-        this.load.audio('sfx_explosion', './assets/explosion38.wav');
-        this.load.audio('sfx_rocket', './assets/rocket_shot.wav');
     }
     
-    create()
-    {
+    create() {
         let menuConfig = {
-            fontFamily: 'Courier',
-            fontSize: '28px',
-            backgroundColor: '#F3B141',
+            fontFamily: 'Palatino Linotype',
+            fontSize: '250px',
             color: '#843605',
-            align: 'right',
+            align: 'center',
             padding: {
                 top: 5,
                 bottom: 5,
@@ -27,41 +20,94 @@
             fixedWidth: 0
         }
         
-        // show menu text
-        this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'ROCKET PATROL', menuConfig).setOrigin(0.5);
-        this.add.text(game.config.width/2, game.config.height/2, 'Use ←→ arrows to move & (F) to fire', menuConfig).setOrigin(0.5);
-        menuConfig.backgroundColor = '#00FF00';
-        menuConfig.color = '#000';
-        this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding, 'Press ← for Novice or → for Expert', menuConfig).setOrigin(0.5);
+        // title text
+        this.add.text(game.config.width/2, game.config.height/2 - 200, 'Title', menuConfig).setOrigin(0.5);
 
-        // define keys
-        keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
-        keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
-    }
+        // start button
+        menuConfig.fontSize = "100px";
+        let start = this.add.text(game.config.width/2, game.config.height/2 + 100, 'Start', menuConfig).setOrigin(0.5);
+        start.setInteractive();
+        start.on('pointerover', () => {
+            start.setScale(1.3);
+        })
+        start.on('pointerout', () => {
+            start.setScale(1);
+        }) 
+        start.on('pointerdown', () => {
+            this.scene.start("playScene");
+            this.sound.play('sfx_select');
+        })
 
-    update() 
-    {
+        //controls text
+        let control = this.add.text(game.config.width/2, game.config.height/2 + 250, 'Controls', menuConfig).setOrigin(0.5);
+        let underline = this.add.graphics(control.left, control.bottom - 7);
+        menuConfig.fontSize = '50px';
+        this.add.text(game.config.width/2, game.config.height/2 + 320, 'LMB to Jump', menuConfig).setOrigin(0.5);
         
-        if (Phaser.Input.Keyboard.JustDown(keyLEFT)) {
-        // easy Mode
-            game.settings = {
-            spaceshipSpeed: 3,
-            gameTimer: 60000    
-        }
-            this.sound.play('sfx_select');
-            this.scene.start("playScene");    
-        }
-        if (Phaser.Input.Keyboard.JustDown(keyRIGHT)) {
-          // hard mode
-            game.settings = {
-            spaceshipSpeed: 6,
-            gameTimer: 45000    
-        }
-            this.sound.play('sfx_select');
-            this.scene.start("playScene");    
-        }
+        // controls button if needed
+        // let control = this.add.text(game.config.width/2, game.config.height/2 + 250, 'Controls', menuConfig).setOrigin(0.5);
+        // control.setInteractive();
+        // control.on('pointerover', () => {
+        //     control.setScale(1.3);
+        // })
+        // control.on('pointerout', () => {
+        //     control.setScale(1);
+        // }) 
+        // control.on('pointerdown', () => {
+        //     //this.scene.start("controlScene");
+        //     //this.sound.play('sfx_select');
+        // })
+        
     }
 }
 
+class GameMenu extends Phaser.Scene {
+    constructor() {
+        super("endScene");
+    }
+    
+    preload() {
+        this.load.audio('sfx_select', './assets/blip_select12.wav');
+    }
+    
+    create() {
+        let endConfig = {
+            fontFamily: 'Palatino Linotype',
+            fontSize: '100px',
+            color: '#fcec3c',
+            align: 'center',
+        }
 
-*/
+        //game over text
+        this.add.text(game.config.width/2, game.config.height/2 - 200, 'GAME OVER', endConfig).setOrigin(0.5);
+
+        //restart button
+        endConfig.fontSize = "60px";
+        let restart = this.add.text(game.config.width/2, game.config.height/2 + 50, 'RESTART', endConfig).setOrigin(0.5);
+        restart.setInteractive();
+        restart.on('pointerover', () => {
+            restart.setScale(1.3);
+        })
+        restart.on('pointerout', () => {
+            restart.setScale(1);
+        }) 
+        restart.on('pointerdown', () => {
+            this.scene.start("playScene");
+            //this.sound.play('sfx_select');
+        })
+
+        //return to main menu button
+        let main = this.add.text(game.config.width/2, game.config.height/2 + 150, 'MAIN MENU', endConfig).setOrigin(0.5);
+        main.setInteractive();
+        main.on('pointerover', () => {
+            main.setScale(1.3);
+        })
+        main.on('pointerout', () => {
+            main.setScale(1);
+        }) 
+        main.on('pointerdown', () => {
+            this.scene.start("mainScene");
+            //this.sound.play('sfx_select');
+        })
+    }
+}
