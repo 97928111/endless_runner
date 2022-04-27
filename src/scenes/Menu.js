@@ -5,6 +5,7 @@ class MainMenu extends Phaser.Scene {
     
     preload() {
         this.load.audio('sfx_select', './assets/blip_select12.wav');
+        this.load.audio('bgm', './assets/endless_runner.mp3')
     }
     
     create() {
@@ -43,6 +44,11 @@ class MainMenu extends Phaser.Scene {
         let underline = this.add.graphics(control.left, control.bottom - 7);
         menuConfig.fontSize = '50px';
         this.add.text(game.config.width/2, game.config.height/2 + 320, 'LMB to Jump', menuConfig).setOrigin(0.5);
+
+        //loop background music
+        var music = this.sound.add('bgm');
+        music.setLoop(true);
+        music.play();
         
         // controls button if needed
         // let control = this.add.text(game.config.width/2, game.config.height/2 + 250, 'Controls', menuConfig).setOrigin(0.5);
