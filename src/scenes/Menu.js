@@ -76,6 +76,10 @@ class GameMenu extends Phaser.Scene {
     preload() {
         this.load.audio('sfx_select', './assets/blip_select12.wav');
     }
+
+    init (data) {
+        this.finalscore = data.score;
+    }
     
     create() {
         let endConfig = {
@@ -90,6 +94,7 @@ class GameMenu extends Phaser.Scene {
 
         //restart button
         endConfig.fontSize = "60px";
+        this.add.text(game.config.width/2, game.config.height/2 - 100, 'Score: ' + this.finalscore, endConfig).setOrigin(0.5);
         let restart = this.add.text(game.config.width/2, game.config.height/2 + 50, 'RESTART', endConfig).setOrigin(0.5);
         restart.setInteractive();
         restart.on('pointerover', () => {

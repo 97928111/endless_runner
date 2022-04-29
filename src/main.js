@@ -31,4 +31,3 @@ window.onload = function() {
     resize();
     window.addEventListener("resize", resize, false);
 }
-

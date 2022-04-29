@@ -10,7 +10,8 @@ class Play extends Phaser.Scene {
     }
 
     create() {
-
+        this.score = 0;
+        this.scoretext = this.add.text(16, 16, 'Score: ' + this.score, {fontSize: '32px'});
         this.platformGroup = this.add.group({
  
             // once a platform is removed, it's added to the pool
@@ -79,7 +80,7 @@ class Play extends Phaser.Scene {
     update() {
         // game over12
         if(this.player.y > game.config.height){
-            this.scene.start("endScene");
+            this.scene.start("endScene", {score: this.score});
         }
         this.player.x = gameOptions.playerStartPosition;
  
@@ -91,6 +92,8 @@ class Play extends Phaser.Scene {
             if(platform.x < - platform.displayWidth / 2){
                 this.platformGroup.killAndHide(platform);
                 this.platformGroup.remove(platform);
+                this.score += 10;
+                this.scoretext.text = 'Score: ' + this.score;
             }
         }, this);
  
