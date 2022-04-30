@@ -13,8 +13,16 @@ class Play extends Phaser.Scene {
     {
         //animation for character
         this.anims.create({
+            key: 'running',
+            frames: this.anims.generateFrameNames('character', {prefix:"endless_charac ", start: 0, end: 3, zeroPad: 1, suffix: ".png"}),
+            duration: 500,
+            delayRepeat: 500,
+            repeat: -1
+        });
+
+        this.anims.create({
             key: 'standing',
-            frames: this.anims.generateFrameNames('character', {prefix:"endless_charac ", start: 0, end: 4, zeroPad: 1, suffix: ".png"}),
+            frames: this.anims.generateFrameNames('character', {prefix:"endless_charac ", start: 1, end: 1, zeroPad: 1, suffix: ".png"}),
             duration: 500,
             delayRepeat: 500,
             repeat: -1
@@ -92,21 +100,28 @@ class Play extends Phaser.Scene {
     {
         if(cursors.left.isDown)
         {
-            this.player.setVelocityX(-500);
-            this.player.anims.play('standing');
+            this.player.setVelocityX(-300);
+            this.player.anims.play('running',true);
         }
         else if(cursors.right.isDown)
         {
-            this.player.setVelocityX(500);
-            this.player.anims.play('standing');
+            this.player.setVelocityX(400);
+            this.player.anims.play('running',true);
         }
         else
         {
-            this.player.setVelocityX(0);
+            if(this.player.body.touching.down)
+            {
+                this.player.setVelocityX(0);
+                this.player.anims.play('standing',true)
+            }
         }
         
         // game over12
         if(this.player.y > game.config.height){
+            this.scene.start("endScene", {score: this.score});
+        }
+        if(this.player.x < game.config.width/1280){
             this.scene.start("endScene", {score: this.score});
         }
         
