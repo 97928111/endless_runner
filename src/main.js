@@ -7,7 +7,7 @@ let gameOptions = {
     platformSizeRange: [50, 250],
     playerGravity: 900,
     jumpForce: 400,
-    playerStartPosition: 200,
+    playerStartPosition: 300,
     jumps: 2
 }
  
@@ -31,3 +31,5 @@ window.onload = function() {
     resize();
     window.addEventListener("resize", resize, false);
 }
+
+var cursors;

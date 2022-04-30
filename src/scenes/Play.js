@@ -5,15 +5,25 @@ class Play extends Phaser.Scene {
 
     preload() {
         this.load.image("platform", './assets/platform.png');
-        this.load.image("ball", './assets/ball.png');
+        this.load.atlas("character",'./assets/endless_charac-sheet.png','./assets/endless_charac.json')
         
     }
 
-    create() {
+    create() 
+    {
+        //animation for character
+        this.anims.create({
+            key: 'standing',
+            frames: this.anims.generateFrameNames('character', {prefix:"endless_charac ", start: 0, end: 4, zeroPad: 1, suffix: ".png"}),
+            duration: 500,
+            delayRepeat: 500,
+            repeat: -1
+        });
+
         this.score = 0;
         this.scoretext = this.add.text(16, 16, 'Score: ' + this.score, {fontSize: '32px'});
+
         this.platformGroup = this.add.group({
- 
             // once a platform is removed, it's added to the pool
             removeCallback: function(platform){
                 platform.scene.platformPool.add(platform)
@@ -22,7 +32,6 @@ class Play extends Phaser.Scene {
  
         // pool
         this.platformPool = this.add.group({
- 
             // once a platform is removed from the pool, it's added to the active platforms group
             removeCallback: function(platform){
                 platform.scene.platformGroup.add(platform)
@@ -36,7 +45,7 @@ class Play extends Phaser.Scene {
         this.addPlatform(game.config.width, game.config.width / 2);
  
         // adding the player;
-        this.player = this.physics.add.sprite(gameOptions.playerStartPosition, game.config.height / 2, "ball");
+        this.player = this.physics.add.sprite(gameOptions.playerStartPosition, game.config.height / 2, "character");
         this.player.setGravityY(gameOptions.playerGravity);
  
         // setting collisions between the player and the platform group
@@ -44,6 +53,8 @@ class Play extends Phaser.Scene {
  
         // checking for input
         this.input.on("pointerdown", this.jump, this);
+
+        cursors = this.input.keyboard.createCursorKeys();
     }
  
     // the core of the script: platform are added from the pool or created on the fly
@@ -77,13 +88,30 @@ class Play extends Phaser.Scene {
         }
     }
 
-    update() {
+    update() 
+    {
+        if(cursors.left.isDown)
+        {
+            this.player.setVelocityX(-500);
+            this.player.anims.play('standing');
+        }
+        else if(cursors.right.isDown)
+        {
+            this.player.setVelocityX(500);
+            this.player.anims.play('standing');
+        }
+        else
+        {
+            this.player.setVelocityX(0);
+        }
+        
         // game over12
         if(this.player.y > game.config.height){
             this.scene.start("endScene", {score: this.score});
         }
-        this.player.x = gameOptions.playerStartPosition;
- 
+        
+        //this.player.x = gameOptions.playerStartPosition;
+
         // recycling platformss
         let minDistance = game.config.width;
         this.platformGroup.getChildren().forEach(function(platform){

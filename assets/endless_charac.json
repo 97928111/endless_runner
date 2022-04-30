@@ -1,0 +1,49 @@
+{ "frames": {
+   "endless_charac 0.png": {
+    "frame": { "x": 0, "y": 0, "w": 73, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 73, "h": 115 },
+    "sourceSize": { "w": 73, "h": 115 },
+    "duration": 100
+   },
+   "endless_charac 1.png": {
+    "frame": { "x": 73, "y": 0, "w": 73, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 73, "h": 115 },
+    "sourceSize": { "w": 73, "h": 115 },
+    "duration": 100
+   },
+   "endless_charac 2.png": {
+    "frame": { "x": 146, "y": 0, "w": 73, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 73, "h": 115 },
+    "sourceSize": { "w": 73, "h": 115 },
+    "duration": 100
+   },
+   "endless_charac 3.png": {
+    "frame": { "x": 219, "y": 0, "w": 73, "h": 115 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 73, "h": 115 },
+    "sourceSize": { "w": 73, "h": 115 },
+    "duration": 100
+   }
+ },
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.2.34.1-x64",
+  "format": "RGBA8888",
+  "size": { "w": 292, "h": 115 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "layers": [
+   { "name": "Sprite Sheet", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}
