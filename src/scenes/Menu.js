@@ -12,7 +12,7 @@ class MainMenu extends Phaser.Scene {
     create() {
         let menuConfig = {
             fontFamily: 'Palatino Linotype',
-            fontSize: '250px',
+            fontSize: '150px',
             color: '#843605',
             align: 'center',
             padding: {
@@ -23,7 +23,7 @@ class MainMenu extends Phaser.Scene {
         }
         
         // title text
-        this.add.text(game.config.width/2, game.config.height/2 - 200, 'Title', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/2 - 200, 'Dungeon Runner', menuConfig).setOrigin(0.5);
 
         // start button
         menuConfig.fontSize = "100px";
@@ -45,6 +45,8 @@ class MainMenu extends Phaser.Scene {
         let underline = this.add.graphics(control.left, control.bottom - 7);
         menuConfig.fontSize = '50px';
         this.add.text(game.config.width/2, game.config.height/2 + 320, 'LMB to Jump', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/2 + 370, '<- for left', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/2 + 420, '-> for right', menuConfig).setOrigin(0.5);
 
         //loop background music
         var music = this.sound.add('bgm');
