@@ -5,12 +5,14 @@ class Play extends Phaser.Scene {
 
     preload() {
         this.load.image("platform", './assets/platform.png');
-        this.load.atlas("character",'./assets/endless_charac-sheet.png','./assets/endless_charac.json')
+        this.load.atlas("character",'./assets/endless_charac-sheet.png','./assets/endless_charac.json');
+        this.load.image('spaceship', './assets/spaceship.png');
         
     }
 
     create() 
     {
+        //this.ship02 = new Spaceship(this, game.config.width + borderUISize * 3,gameOptions.batSpawnRangeY, 'spaceship', 0).setOrigin(0,0);
         //animation for character
         this.anims.create({
             key: 'running',
