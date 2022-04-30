@@ -4,7 +4,7 @@ class Play extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image("platform", './assets/platform.png');
+        this.load.image("platform", './assets/layer.png');
         this.load.atlas("character",'./assets/endless_charac-sheet.png','./assets/endless_charac.json');
         this.load.image('spaceship', './assets/spaceship.png');
         
