@@ -5,7 +5,8 @@ class MainMenu extends Phaser.Scene {
     
     preload() {
         this.load.audio('sfx_select', './assets/blip_select12.wav');
-        this.load.audio('bgm', './assets/endless_runner.mp3')
+        this.load.audio('bgm', './assets/endless_runner.mp3');
+        this.load.audio('jump', './assets/Jump.wav');
     }
     
     create() {

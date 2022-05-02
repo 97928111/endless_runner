@@ -102,9 +102,11 @@ class Play extends Phaser.Scene {
         {
             if(this.player.body.touching.down){
                 this.playerJumps = 0;
+                this.sound.play('jump');
             }
             this.player.setVelocityY(gameOptions.jumpForce * -1);
             this.playerJumps ++;
+            
         }
     }
     update() 
