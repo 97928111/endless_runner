@@ -6,14 +6,17 @@ class Play extends Phaser.Scene {
     preload() {
         this.load.image("platform", './assets/platform.png');
         this.load.atlas("character",'./assets/endless_charac.png','./assets/endless_charac1.json');
-        this.load.image('spaceship', './assets/spaceship.png');
+        this.load.image('arrow', './assets/arrow.png');
         
     }
 
     create() 
     {
+        
         this.gameOver = false;
-        this.ship02 = new bat(this, 1664, 650, 'spaceship', 0).setOrigin(0,0);
+        this.arrow1 = new arrow(this, 1664, 650, 'arrow', 0).setOrigin(0,0);
+
+        
         //animation for character
         this.anims.create({
             key: 'running',
@@ -66,6 +69,12 @@ class Play extends Phaser.Scene {
         this.input.on("pointerdown", this.jump, this);
 
         cursors = this.input.keyboard.createCursorKeys();
+
+        this.physics.add.overlap(this.player, this.ship02, this.hit, null, this);
+    }
+    hit(player, ship)
+    {
+        this.gameOver = true;
     }
  
     // the core of the script: platform are added from the pool or created on the fly
@@ -98,14 +107,19 @@ class Play extends Phaser.Scene {
             this.playerJumps ++;
         }
     }
-
     update() 
     {
+        if(this.gameOver)
+        {
+            this.scene.start("endScene", {score: this.score});
+        }
         if(!this.gameOver)
         {
-            this.ship02.update();
+            this.arrow1.update();
         }
-        if(this.checkCollision(this.player, this.ship02))
+        
+
+        if(this.checkCollision(this.player, this.arrow1))
         {
             this.scene.start("endScene", {score: this.score});
         }
@@ -158,11 +172,12 @@ class Play extends Phaser.Scene {
             this.addPlatform(nextPlatformWidth, game.config.width + nextPlatformWidth / 2);
         }
     }   
+    
 
-    checkCollision(character, ship)
+    checkCollision(character, arrow)
     {
         // simple AABB checking
-        if(character.x < ship.x+4 && character.x +4 > ship.x)
+        if(character.x < arrow.x+4 && character.x +4 >arrow.x)
             //&& character.y < ship.y + 2 && 2 + character.y > ship.y
            {
                return true;
@@ -173,6 +188,7 @@ class Play extends Phaser.Scene {
            }
 
     }
+
 
 };
 

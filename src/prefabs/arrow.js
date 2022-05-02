@@ -1,4 +1,4 @@
-class bat extends Phaser.GameObjects.Sprite
+class arrow extends Phaser.GameObjects.Sprite
 {
     constructor(scene, x, y, texture, frame)
     {
