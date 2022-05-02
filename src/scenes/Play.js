@@ -11,7 +11,8 @@ class Play extends Phaser.Scene {
     }
 
     create() {
-        
+        keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+
         this.gameOver = false;
         this.arrow1 = new arrow(this, 1664, Phaser.Math.Between(gameOptions.batSpawnRangeY[0], gameOptions.batSpawnRangeY[1]), 'arrow', 0).setOrigin(0,0);
 
@@ -63,13 +64,8 @@ class Play extends Phaser.Scene {
  
         // setting collisions between the player and the platform group
         this.physics.add.collider(this.player, this.platformGroup);
- 
-        // checking for input
-        this.input.on("pointerdown", this.jump, this);
 
         cursors = this.input.keyboard.createCursorKeys();
-
-        this.physics.add.overlap(this.player, this.ship02, this.hit, null, this);
     }
  
     // the core of the script: platform are added from the pool or created on the fly
@@ -106,31 +102,32 @@ class Play extends Phaser.Scene {
     }
 
     update() {
+        if(this.gameOver) {
+            this.scene.start("endScene", {score: this.score});
+        }
+        if(!this.gameOver) {
+            this.arrow1.update();
+        }
         if(this.arrow1.x <= 0) {
             this.arrow1.reset();
             this.score += 5;
-        }
-
-        if(this.gameOver)
-        {
-            this.scene.start("endScene", {score: this.score});
-        }
-        if(!this.gameOver)
-        {
-            this.arrow1.update();
-        }
+        } 
         
 
-        if(this.checkCollision(this.player, this.arrow1))
-        {
+        if(this.checkCollision(this.player, this.arrow1)) {
             this.scene.start("endScene", {score: this.score});
         }
 
-        if(cursors.left.isDown)
-        {
+        //checks if player pressed up arrow
+        if(Phaser.Input.Keyboard.JustDown(keyUP)) {
+            this.jump();
+        }
+        //checks if player pressed left arrow 
+        if(cursors.left.isDown) {
             this.player.setVelocityX(-300);
             this.player.anims.play('running',true);
         }
+        //checks if player pressed right arrow
         else if(cursors.right.isDown)
         {
             this.player.setVelocityX(400);

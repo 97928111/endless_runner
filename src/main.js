@@ -5,7 +5,7 @@ let gameOptions = {
     platformStartSpeed: 350,
     batSpawnRangeY:[500,740],
     spawnRange: [100, 350],
-    platformSizeRange: [50, 250],
+    platformSizeRange: [75, 250],
     playerGravity: 900,
     jumpForce: 400,
     playerStartPosition: 300,
@@ -34,3 +34,4 @@ window.onload = function() {
 }
 
 var cursors;
+let keyUP;
