@@ -63,6 +63,7 @@ class GameMenu extends Phaser.Scene {
     
     preload() {
         this.load.audio('sfx_select', './assets/blip_select12.wav');
+        this.load.image('endbackground', './assets/endingbg.png');
     }
 
     init (data) {
@@ -76,7 +77,8 @@ class GameMenu extends Phaser.Scene {
             color: 'red',
             align: 'center',
         }
-
+        // game over background
+        this.endingbackground = this.add.tileSprite(0, 0, 1280, 960, 'endbackground').setOrigin(0, 0);
         //game over text
         this.add.text(game.config.width/2, game.config.height/2 - 200, 'GAME OVER', endConfig).setOrigin(0.5);
 
