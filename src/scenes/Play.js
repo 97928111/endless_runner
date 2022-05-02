@@ -5,7 +5,7 @@ class Play extends Phaser.Scene {
 
     preload() {
         this.load.image("platform", './assets/platform.png');
-        this.load.atlas("character",'./assets/endless_charac-sheet.png','./assets/endless_charac.json');
+        this.load.atlas("character",'./assets/endless_charac.png','./assets/endless_charac1.json');
         this.load.image('spaceship', './assets/spaceship.png');
         
     }
@@ -17,7 +17,7 @@ class Play extends Phaser.Scene {
         //animation for character
         this.anims.create({
             key: 'running',
-            frames: this.anims.generateFrameNames('character', {prefix:"endless_charac ", start: 0, end: 3, zeroPad: 1, suffix: ".png"}),
+            frames: this.anims.generateFrameNames('character', {prefix:"endless_charac-sheet ", start: 0, end: 3, zeroPad: 1, suffix: ".png"}),
             duration: 500,
             delayRepeat: 500,
             repeat: -1
@@ -25,7 +25,7 @@ class Play extends Phaser.Scene {
 
         this.anims.create({
             key: 'standing',
-            frames: this.anims.generateFrameNames('character', {prefix:"endless_charac ", start: 1, end: 1, zeroPad: 1, suffix: ".png"}),
+            frames: this.anims.generateFrameNames('character', {prefix:"endless_charac-sheet ", start: 1, end: 1, zeroPad: 1, suffix: ".png"}),
             duration: 500,
             delayRepeat: 500,
             repeat: -1
