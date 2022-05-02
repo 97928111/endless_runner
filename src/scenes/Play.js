@@ -13,12 +13,14 @@ class Play extends Phaser.Scene {
 
     create() {
         
+        //background
         this.background = this.add.tileSprite(0, 0, 1280, 960, 'background').setOrigin(0, 0);
 
         keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
 
         this.gameOver = false;
         this.a2 = false;
+        //add arrow
         this.arrow1 = new arrow(this, 1664, Phaser.Math.Between(gameOptions.batSpawnRangeY[0], gameOptions.batSpawnRangeY[1]), 'arrow', 0).setOrigin(0,0);
         
         //animation for character
