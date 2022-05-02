@@ -85,7 +85,7 @@ class Play extends Phaser.Scene {
             this.platformPool.remove(platform);
         }
         else{
-            platform = this.physics.add.sprite(posX, game.config.height * 0.8, "platform");
+            platform = this.physics.add.sprite(posX, game.config.height * 0.85, "platform");
             platform.setImmovable(true);
             platform.setVelocityX(gameOptions.platformStartSpeed * -1);
             this.platformGroup.add(platform);
@@ -109,7 +109,6 @@ class Play extends Phaser.Scene {
 
     update() {
         this.background.tilePositionX += 4;
-        
         
         if(this.gameOver) {
             this.scene.start("endScene", {score: this.score});

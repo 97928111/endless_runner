@@ -11,9 +11,9 @@ let gameOptions = {
     platformStartSpeed: 350,
     batSpawnRangeY:[300,740],
     spawnRange: [100, 350],
-    platformSizeRange: [75, 250],
+    platformSizeRange: [100, 250],
     playerGravity: 900,
-    jumpForce: 400,
+    jumpForce: 500,
     playerStartPosition: 300,
     jumps: 2
 }

@@ -5,7 +5,7 @@ class arrow extends Phaser.GameObjects.Sprite
         // add to existing scene
         scene.add.existing(this);
         // pixels per frame
-        this.moveSpeed = 7;
+        this.moveSpeed = 10;
     }
 
     update() {
