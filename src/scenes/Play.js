@@ -174,7 +174,7 @@ class Play extends Phaser.Scene {
     
     checkCollision(character, arrow) {
         // simple AABB checking
-        if(character.x < arrow.x + 4 && character.x + 4 > arrow.x && character.y < arrow.y + 43 && character.y > arrow.y - 43) {
+        if(character.x < arrow.x + 4 && character.x + 4 > arrow.x && character.y < arrow.y + 50 && character.y > arrow.y - 50) {
                return true;
            }
            else
