@@ -7,10 +7,14 @@ class Play extends Phaser.Scene {
         this.load.image("platform", './assets/platform.png');
         this.load.atlas("character",'./assets/endless_charac.png','./assets/endless_charac1.json');
         this.load.image('arrow', './assets/arrow.png');
+        this.load.image('background', './assets/playbg.png');
         
     }
 
     create() {
+        
+        this.background = this.add.tileSprite(0, 0, 1280, 960, 'background').setOrigin(0, 0);
+
         keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
 
         this.gameOver = false;
@@ -33,10 +37,9 @@ class Play extends Phaser.Scene {
             delayRepeat: 500,
             repeat: -1
         });
-
-        this.score = 0;
-        this.scoretext = this.add.text(16, 16, 'Score: ' + this.score, {fontSize: '32px'});
-
+        
+        
+        
         this.platformGroup = this.add.group({
             // once a platform is removed, it's added to the pool
             removeCallback: function(platform){
@@ -66,6 +69,9 @@ class Play extends Phaser.Scene {
         this.physics.add.collider(this.player, this.platformGroup);
 
         cursors = this.input.keyboard.createCursorKeys();
+
+        this.score = 0;
+        this.scoretext = this.add.text(16, 16, 'Score: ' + this.score, {fontSize: '32px'});
     }
  
     // the core of the script: platform are added from the pool or created on the fly
@@ -102,6 +108,9 @@ class Play extends Phaser.Scene {
     }
 
     update() {
+        this.background.tilePositionX += 4;
+        
+        
         if(this.gameOver) {
             this.scene.start("endScene", {score: this.score});
         }
