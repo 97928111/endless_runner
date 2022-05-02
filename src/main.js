@@ -1,3 +1,9 @@
+/*Names: Danny Chung, Hongyi Bai, Jimmy Lu
+Game Title:
+Date Completed: 5/2/2022
+Creative Tilt Justification:
+*/
+
 let game;
  
 // global game options
