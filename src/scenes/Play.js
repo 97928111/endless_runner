@@ -7,11 +7,14 @@ class Play extends Phaser.Scene {
         this.load.image("platform", './assets/platform.png');
         this.load.atlas("character",'./assets/endless_charac.png','./assets/endless_charac1.json');
         this.load.image('spaceship', './assets/spaceship.png');
+        this.load.image('background', './assets/playbg.png');
         
     }
 
     create() 
     {
+        this.background = this.add.tileSprite(0, 0, 1280, 870, 'background').setOrigin(0, 0);
+        
         this.gameOver = false;
         this.ship02 = new bat(this, 1664, 650, 'spaceship', 0).setOrigin(0,0);
         //animation for character
@@ -101,6 +104,7 @@ class Play extends Phaser.Scene {
 
     update() 
     {
+        this.background.tilePositionX += 4;
         if(!this.gameOver)
         {
             this.ship02.update();
