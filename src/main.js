@@ -3,7 +3,7 @@ let game;
 // global game options
 let gameOptions = {
     platformStartSpeed: 350,
-    batSpawnRangeY:[500,740],
+    batSpawnRangeY:[300,740],
     spawnRange: [100, 350],
     platformSizeRange: [75, 250],
     playerGravity: 900,

@@ -14,8 +14,8 @@ class Play extends Phaser.Scene {
         keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
 
         this.gameOver = false;
+        this.a2 = false;
         this.arrow1 = new arrow(this, 1664, Phaser.Math.Between(gameOptions.batSpawnRangeY[0], gameOptions.batSpawnRangeY[1]), 'arrow', 0).setOrigin(0,0);
-
         
         //animation for character
         this.anims.create({
@@ -107,12 +107,26 @@ class Play extends Phaser.Scene {
         }
         if(!this.gameOver) {
             this.arrow1.update();
+            if(this.a2) {
+                this.arrow2.update();
+            }
         }
         if(this.arrow1.x <= 0) {
             this.arrow1.reset();
             this.score += 5;
-        } 
-        
+            this.scoretext.text = 'Score: ' + this.score;
+        }
+        if(this.score > 100 && !this.a2) {
+            this.a2 = true;
+            this.arrow2 = new arrow(this, game.config.width, Phaser.Math.Between(gameOptions.batSpawnRangeY[0], gameOptions.batSpawnRangeY[1]), 'arrow', 0).setOrigin(0,0);
+        }
+        if (this.a2) {
+            if(this.arrow2.x <= 0) {
+                this.arrow2.reset();
+                this.score += 5;
+                this.scoretext.text = 'Score: ' + this.score;
+            }  
+        }
 
         if(this.checkCollision(this.player, this.arrow1)) {
             this.scene.start("endScene", {score: this.score});
@@ -174,7 +188,7 @@ class Play extends Phaser.Scene {
     
     checkCollision(character, arrow) {
         // simple AABB checking
-        if(character.x < arrow.x + 4 && character.x + 4 > arrow.x && character.y < arrow.y + 50 && character.y > arrow.y - 50) {
+        if(character.x < arrow.x + 29 && character.x > arrow.x - 29 && character.y < arrow.y + 50 && character.y > arrow.y - 50) {
                return true;
            }
            else

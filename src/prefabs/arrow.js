@@ -5,18 +5,12 @@ class arrow extends Phaser.GameObjects.Sprite
         // add to existing scene
         scene.add.existing(this);
         // pixels per frame
-        this.moveSpeed = 8;
+        this.moveSpeed = 7;
     }
 
     update() {
         // move arrow left
         this.x -= this.moveSpeed;
-
-        // wrap around from left edge to right edge
-        // if(this.x <= 0 - this.width) {
-        //     this.reset();
-        // }
-
     }
     // position reset
     reset() {
