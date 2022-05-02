@@ -45,7 +45,7 @@ class MainMenu extends Phaser.Scene {
         //controls text
         let control = this.add.text(game.config.width/2, game.config.height/2 + 250, 'Controls', menuConfig).setOrigin(0.5);
         menuConfig.fontSize = '40px';
-        this.add.text(game.config.width/2, game.config.height/2 + 320, '↑ to Jump', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/2 + 320, '↑ to Jump(press twice to double jump)', menuConfig).setOrigin(0.5);
         this.add.text(game.config.width/2, game.config.height/2 + 370, '← for left', menuConfig).setOrigin(0.5);
         this.add.text(game.config.width/2, game.config.height/2 + 420, '→ for right', menuConfig).setOrigin(0.5);
 
