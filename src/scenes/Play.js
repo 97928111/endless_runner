@@ -6,17 +6,17 @@ class Play extends Phaser.Scene {
     preload() {
         this.load.image("platform", './assets/platform.png');
         this.load.atlas("character",'./assets/endless_charac.png','./assets/endless_charac1.json');
-        this.load.image('spaceship', './assets/spaceship.png');
-        this.load.image('background', './assets/playbg.png');
+        this.load.image('arrow', './assets/arrow.png');
         
     }
 
-    create() 
-    {
-        this.background = this.add.tileSprite(0, 0, 1280, 870, 'background').setOrigin(0, 0);
-        
+    create() {
+        keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+
         this.gameOver = false;
-        this.ship02 = new bat(this, 1664, 650, 'spaceship', 0).setOrigin(0,0);
+        this.a2 = false;
+        this.arrow1 = new arrow(this, 1664, Phaser.Math.Between(gameOptions.batSpawnRangeY[0], gameOptions.batSpawnRangeY[1]), 'arrow', 0).setOrigin(0,0);
+        
         //animation for character
         this.anims.create({
             key: 'running',
@@ -64,9 +64,6 @@ class Play extends Phaser.Scene {
  
         // setting collisions between the player and the platform group
         this.physics.add.collider(this.player, this.platformGroup);
- 
-        // checking for input
-        this.input.on("pointerdown", this.jump, this);
 
         cursors = this.input.keyboard.createCursorKeys();
     }
@@ -96,29 +93,55 @@ class Play extends Phaser.Scene {
         {
             if(this.player.body.touching.down){
                 this.playerJumps = 0;
+                this.sound.play('jump');
             }
             this.player.setVelocityY(gameOptions.jumpForce * -1);
             this.playerJumps ++;
+            
         }
     }
 
-    update() 
-    {
-        this.background.tilePositionX += 4;
-        if(!this.gameOver)
-        {
-            this.ship02.update();
+    update() {
+        if(this.gameOver) {
+            this.scene.start("endScene", {score: this.score});
         }
-        if(this.checkCollision(this.player, this.ship02))
-        {
+        if(!this.gameOver) {
+            this.arrow1.update();
+            if(this.a2) {
+                this.arrow2.update();
+            }
+        }
+        if(this.arrow1.x <= 0) {
+            this.arrow1.reset();
+            this.score += 5;
+            this.scoretext.text = 'Score: ' + this.score;
+        }
+        if(this.score > 100 && !this.a2) {
+            this.a2 = true;
+            this.arrow2 = new arrow(this, game.config.width, Phaser.Math.Between(gameOptions.batSpawnRangeY[0], gameOptions.batSpawnRangeY[1]), 'arrow', 0).setOrigin(0,0);
+        }
+        if (this.a2) {
+            if(this.arrow2.x <= 0) {
+                this.arrow2.reset();
+                this.score += 5;
+                this.scoretext.text = 'Score: ' + this.score;
+            }  
+        }
+
+        if(this.checkCollision(this.player, this.arrow1)) {
             this.scene.start("endScene", {score: this.score});
         }
 
-        if(cursors.left.isDown)
-        {
+        //checks if player pressed up arrow
+        if(Phaser.Input.Keyboard.JustDown(keyUP)) {
+            this.jump();
+        }
+        //checks if player pressed left arrow 
+        if(cursors.left.isDown) {
             this.player.setVelocityX(-300);
             this.player.anims.play('running',true);
         }
+        //checks if player pressed right arrow
         else if(cursors.right.isDown)
         {
             this.player.setVelocityX(400);
@@ -161,22 +184,19 @@ class Play extends Phaser.Scene {
             var nextPlatformWidth = Phaser.Math.Between(gameOptions.platformSizeRange[0], gameOptions.platformSizeRange[1]);
             this.addPlatform(nextPlatformWidth, game.config.width + nextPlatformWidth / 2);
         }
-    }   
-
-    checkCollision(character, ship)
-    {
+    }
+    
+    checkCollision(character, arrow) {
         // simple AABB checking
-        if(character.x < ship.x+4 && character.x +4 > ship.x)
-            //&& character.y < ship.y + 2 && 2 + character.y > ship.y
-           {
+        if(character.x < arrow.x + 29 && character.x > arrow.x - 29 && character.y < arrow.y + 50 && character.y > arrow.y - 50) {
                return true;
            }
            else
            {
                return false;
            }
-
     }
+
 
 };
 

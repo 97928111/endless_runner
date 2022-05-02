@@ -1,11 +1,17 @@
+/*Names: Danny Chung, Hongyi Bai, Jimmy Lu
+Game Title:
+Date Completed: 5/2/2022
+Creative Tilt Justification:
+*/
+
 let game;
  
 // global game options
 let gameOptions = {
     platformStartSpeed: 350,
-    batSpawnRangeY:[500,700],
+    batSpawnRangeY:[300,740],
     spawnRange: [100, 350],
-    platformSizeRange: [50, 250],
+    platformSizeRange: [75, 250],
     playerGravity: 900,
     jumpForce: 400,
     playerStartPosition: 300,
@@ -34,3 +40,4 @@ window.onload = function() {
 }
 
 var cursors;
+let keyUP;

@@ -5,7 +5,8 @@ class MainMenu extends Phaser.Scene {
     
     preload() {
         this.load.audio('sfx_select', './assets/blip_select12.wav');
-        this.load.audio('bgm', './assets/endless_runner.mp3')
+        this.load.audio('bgm', './assets/endless_runner.mp3');
+        this.load.audio('jump', './assets/Jump.wav');
     }
     
     create() {
@@ -41,31 +42,15 @@ class MainMenu extends Phaser.Scene {
 
         //controls text
         let control = this.add.text(game.config.width/2, game.config.height/2 + 250, 'Controls', menuConfig).setOrigin(0.5);
-        let underline = this.add.graphics(control.left, control.bottom - 7);
-        menuConfig.fontSize = '50px';
-        this.add.text(game.config.width/2, game.config.height/2 + 320, 'LMB to Jump', menuConfig).setOrigin(0.5);
-        this.add.text(game.config.width/2, game.config.height/2 + 370, '<- for left', menuConfig).setOrigin(0.5);
-        this.add.text(game.config.width/2, game.config.height/2 + 420, '-> for right', menuConfig).setOrigin(0.5);
+        menuConfig.fontSize = '40px';
+        this.add.text(game.config.width/2, game.config.height/2 + 320, '↑ to Jump', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/2 + 370, '← for left', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/2 + 420, '→ for right', menuConfig).setOrigin(0.5);
 
         //loop background music
         var music = this.sound.add('bgm');
         music.setLoop(true);
         music.play();
-        
-        // controls button if needed
-        // let control = this.add.text(game.config.width/2, game.config.height/2 + 250, 'Controls', menuConfig).setOrigin(0.5);
-        // control.setInteractive();
-        // control.on('pointerover', () => {
-        //     control.setScale(1.3);
-        // })
-        // control.on('pointerout', () => {
-        //     control.setScale(1);
-        // }) 
-        // control.on('pointerdown', () => {
-        //     //this.scene.start("controlScene");
-        //     //this.sound.play('sfx_select');
-        // })
-        
     }
 }
 
@@ -86,7 +71,7 @@ class GameMenu extends Phaser.Scene {
         let endConfig = {
             fontFamily: 'Palatino Linotype',
             fontSize: '100px',
-            color: '#fcec3c',
+            color: 'red',
             align: 'center',
         }
 
