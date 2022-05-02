@@ -10,11 +10,10 @@ class Play extends Phaser.Scene {
         
     }
 
-    create() 
-    {
+    create() {
         
         this.gameOver = false;
-        this.arrow1 = new arrow(this, 1664, 650, 'arrow', 0).setOrigin(0,0);
+        this.arrow1 = new arrow(this, 1664, Phaser.Math.Between(gameOptions.batSpawnRangeY[0], gameOptions.batSpawnRangeY[1]), 'arrow', 0).setOrigin(0,0);
 
         
         //animation for character
@@ -72,10 +71,6 @@ class Play extends Phaser.Scene {
 
         this.physics.add.overlap(this.player, this.ship02, this.hit, null, this);
     }
-    hit(player, ship)
-    {
-        this.gameOver = true;
-    }
  
     // the core of the script: platform are added from the pool or created on the fly
     addPlatform(platformWidth, posX) {
@@ -109,8 +104,13 @@ class Play extends Phaser.Scene {
             
         }
     }
-    update() 
-    {
+
+    update() {
+        if(this.arrow1.x <= 0) {
+            this.arrow1.reset();
+            this.score += 5;
+        }
+
         if(this.gameOver)
         {
             this.scene.start("endScene", {score: this.score});
@@ -173,22 +173,17 @@ class Play extends Phaser.Scene {
             var nextPlatformWidth = Phaser.Math.Between(gameOptions.platformSizeRange[0], gameOptions.platformSizeRange[1]);
             this.addPlatform(nextPlatformWidth, game.config.width + nextPlatformWidth / 2);
         }
-    }   
+    }
     
-
-    checkCollision(character, arrow)
-    {
+    checkCollision(character, arrow) {
         // simple AABB checking
-        if(character.x < arrow.x+4 && character.x +4 >arrow.x)
-            //&& character.y < ship.y + 2 && 2 + character.y > ship.y
-           {
+        if(character.x < arrow.x + 4 && character.x + 4 > arrow.x && character.y < arrow.y + 43 && character.y > arrow.y - 43) {
                return true;
            }
            else
            {
                return false;
            }
-
     }
 
 
