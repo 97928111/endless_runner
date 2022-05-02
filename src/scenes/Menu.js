@@ -22,6 +22,17 @@ class MainMenu extends Phaser.Scene {
             },
             fixedWidth: 0
         }
+        let startConfig = {
+            fontFamily: 'Palatino Linotype',
+            fontSize: '150px',
+            color: '#FFFFFF',
+            align: 'center',
+            padding: {
+                top: 5,
+                bottom: 5,
+            },
+            fixedWidth: 0
+        }
         //menu background
         this.menubackground = this.add.tileSprite(0, 0, 1280, 960, 'menubackground').setOrigin(0, 0);
         // title text
@@ -29,7 +40,7 @@ class MainMenu extends Phaser.Scene {
 
         // start button
         menuConfig.fontSize = "100px";
-        let start = this.add.text(game.config.width/2, game.config.height/2 + 100, 'Start', menuConfig).setOrigin(0.5);
+        let start = this.add.text(game.config.width/2, game.config.height/2 + 100, 'Start', startConfig).setOrigin(0.5);
         start.setInteractive();
         start.on('pointerover', () => {
             start.setScale(1.3);
