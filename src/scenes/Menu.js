@@ -7,6 +7,7 @@ class MainMenu extends Phaser.Scene {
         this.load.audio('sfx_select', './assets/blip_select12.wav');
         this.load.audio('bgm', './assets/endless_runner.mp3');
         this.load.audio('jump', './assets/Jump.wav');
+        this.load.image('menubackground', './assets/menubg.png');
     }
     
     create() {
@@ -21,7 +22,8 @@ class MainMenu extends Phaser.Scene {
             },
             fixedWidth: 0
         }
-        
+        //menu background
+        this.menubackground = this.add.tileSprite(0, 0, 1280, 960, 'menubackground').setOrigin(0, 0);
         // title text
         this.add.text(game.config.width/2, game.config.height/2 - 200, 'Dungeon Runner', menuConfig).setOrigin(0.5);
 
