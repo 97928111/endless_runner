@@ -12,7 +12,8 @@ class Play extends Phaser.Scene {
 
     create() 
     {
-        //this.ship02 = new Spaceship(this, game.config.width + borderUISize * 3,gameOptions.batSpawnRangeY, 'spaceship', 0).setOrigin(0,0);
+        this.gameOver = false;
+        this.ship02 = new bat(this, 1664, 650, 'spaceship', 0).setOrigin(0,0);
         //animation for character
         this.anims.create({
             key: 'running',
@@ -100,6 +101,10 @@ class Play extends Phaser.Scene {
 
     update() 
     {
+        if(!this.gameOver)
+        {
+            this.ship02.update();
+        }
         if(cursors.left.isDown)
         {
             this.player.setVelocityX(-300);

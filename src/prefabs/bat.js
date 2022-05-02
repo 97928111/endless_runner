@@ -25,5 +25,6 @@ class bat extends Phaser.GameObjects.Sprite
     reset()
     {
         this.x = game.config.width;
+        this.y = Phaser.Math.Between(gameOptions.batSpawnRangeY[0], gameOptions.batSpawnRangeY[1]);
     }
 }
