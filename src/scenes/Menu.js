@@ -33,6 +33,7 @@ class MainMenu extends Phaser.Scene {
             },
             fixedWidth: 0
         }
+        //
         //menu background
         this.menubackground = this.add.tileSprite(0, 0, 1280, 960, 'menubackground').setOrigin(0, 0);
         // title text
