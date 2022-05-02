@@ -4,7 +4,7 @@ class Play extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image("platform", './assets/layer.png');
+        this.load.image("platform", './assets/platform.png');
         this.load.atlas("character",'./assets/endless_charac-sheet.png','./assets/endless_charac.json');
         this.load.image('spaceship', './assets/spaceship.png');
         
@@ -105,6 +105,11 @@ class Play extends Phaser.Scene {
         {
             this.ship02.update();
         }
+        if(this.checkCollision(this.player, this.ship02))
+        {
+            this.scene.start("endScene", {score: this.score});
+        }
+
         if(cursors.left.isDown)
         {
             this.player.setVelocityX(-300);
@@ -153,7 +158,23 @@ class Play extends Phaser.Scene {
             this.addPlatform(nextPlatformWidth, game.config.width + nextPlatformWidth / 2);
         }
     }   
+
+    checkCollision(character, ship)
+    {
+        // simple AABB checking
+        if(character.x < ship.x + ship.width && character.x + character.width > ship.x
+           && character.y < ship.y + ship.height && character.height + character.y > ship.y)
+           {
+               return true;
+           }
+           else
+           {
+               return false;
+           }
+    }
+
 };
+
 
 function resize(){
     let canvas = document.querySelector("canvas");

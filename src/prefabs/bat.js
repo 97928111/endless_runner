@@ -6,7 +6,7 @@ class bat extends Phaser.GameObjects.Sprite
         // add to existing scene
         scene.add.existing(this);
         // pixels per frame
-        this.moveSpeed = 4;
+        this.moveSpeed = 8;
     }
 
     update()
