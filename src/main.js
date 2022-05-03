@@ -1,7 +1,13 @@
 /*Names: Danny Chung, Hongyi Bai, Jimmy Lu
-Game Title:
+Game Title: Dungeon Runner
 Date Completed: 5/2/2022
-Creative Tilt Justification:
+Creative Tilt Justification: For the technique part, we are really pround of the
+                             double jump and the random spawn error.(5)
+                             For the visual style, we are really proud of the music and the background art
+                             that really fit the idea of dungeon. We are trying to give the player a creepy
+                             feeling when they play the game.(5)
+Basic code idea from:
+https://www.emanueleferonato.com/2018/11/13/build-a-html5-endless-runner-with-phaser-in-a-few-lines-of-code-using-arcade-physics-and-featuring-object-pooling/
 */
 
 let game;

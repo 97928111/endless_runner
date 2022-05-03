@@ -106,8 +106,10 @@ class GameMenu extends Phaser.Scene {
             restart.setScale(1);
         }) 
         restart.on('pointerdown', () => {
+            
             this.scene.start("playScene");
             //this.sound.play('sfx_select');
+            
         })
 
         //return to main menu button
@@ -120,6 +122,7 @@ class GameMenu extends Phaser.Scene {
             main.setScale(1);
         }) 
         main.on('pointerdown', () => {
+            //this.sound.get('bgm').stop();
             this.scene.start("mainScene");
             //this.sound.play('sfx_select');
         })

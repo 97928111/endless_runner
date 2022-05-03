@@ -172,7 +172,7 @@ class Play extends Phaser.Scene {
             this.scene.start("endScene", {score: this.score});
         }
         if(this.player.x < game.config.width/1280){
-            this.sound.get('bgm').stop();
+            //this.sound.get('bgm').stop();
             this.scene.start("endScene", {score: this.score});
         }
         
