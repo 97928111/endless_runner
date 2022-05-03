@@ -2,7 +2,7 @@
 Game Title: Dungeon Runner
 Date Completed: 5/2/2022
 Creative Tilt Justification: For the technique part, we are really pround of the
-                             double jump and the random spawn error.(5)
+                             double jump and the random spawn arrow.(5)
                              For the visual style, we are really proud of the music and the background art
                              that really fit the idea of dungeon. We are trying to give the player a creepy
                              feeling when they play the game.(5)
