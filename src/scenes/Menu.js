@@ -111,7 +111,7 @@ class GameMenu extends Phaser.Scene {
             //this.sound.play('sfx_select');
             
         })
-
+        /*
         //return to main menu button
         let main = this.add.text(game.config.width/2, game.config.height/2 + 150, 'MAIN MENU', endConfig).setOrigin(0.5);
         main.setInteractive();
@@ -126,5 +126,6 @@ class GameMenu extends Phaser.Scene {
             this.scene.start("mainScene");
             //this.sound.play('sfx_select');
         })
+        */
     }
 }
